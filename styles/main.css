@@ -54,9 +54,15 @@ body {
      cursor: pointer;
  }
 
- .links-container .navbar-link:hover {
+ .navbar-link:hover {
      color: rgb(233,50,117);
+     
  }
+
+ .navbar-link:active {
+    color: rgb(223,50,117);
+    background-color: white;
+}
     
 .container {
     margin: 0 auto;
@@ -94,4 +100,4 @@ body {
 
 .clearfix::after {
    clear: both;
-}
+},

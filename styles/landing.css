@@ -45,9 +45,15 @@ body.landing {
     -moz-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
     
+    -webkit-transition: rotate(180deg);
+    -moz-transition: rotate(180deg);
+    transition: rotate(180deg);
+    
     -webkit-transition-delay: .5s;
     -moz-transition-delay: .5s;
     transition-delay: .5s;
+    
+    
 
 }
 

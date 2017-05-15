@@ -12,7 +12,7 @@ var revealPoint = function(point) {
 };
 
 var animatePoints = function(points) {
-      forEach(points, revealPoint);
+      forEach(pointsArray, revealPoint);
 };
 
 

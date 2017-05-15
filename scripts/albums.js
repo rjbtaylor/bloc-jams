@@ -29,6 +29,21 @@ var albumMarconi = {
     
 };
 
+var albumU2 = {
+    title: 'War', 
+    artist: 'U2', 
+    label: 'Island Records', 
+    year: '1983', 
+    albumArtUrl: 'assets/images/album_covers/22.jpg', 
+    songs: [
+        {title: 'Sunday Bloody Sunday', duration: '4:40'},
+        {title: 'Seconds', duration: '3:11'},
+        {title: 'New Year\'s day', duration: '5:36'}, 
+        {title: 'Like a song...', duration: '4:47'}, 
+        {title: 'Drowning Man', duration: '4:15'}
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
   var template = 
       '<tr class="album-view-song-item">' 
@@ -40,26 +55,40 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template; 
 };
 
-var setCurrentAlbum = function(abum) { 
+ var albumTitle = document.getElementsByClassName('album-view-title')[0];
+     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+     var albumImage = document.getElementsByClassName('album-cover-art')[0];
+     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
+
+ var setCurrentAlbum = function(album) {
+     
+     albumTitle.firstChild.nodeValue = album.title;
+     albumArtist.firstChild.nodeValue = album.artist;
+     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
+     albumImage.setAttribute('src', album.albumArtUrl);
     
-    var albumTitle = document.getElementsByClassName('album-view-title')[0]; 
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0]; 
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassNam('get-view-song-list')[0]; 
+     albumSongList.innerHTML = '';
     
-    albumTitle.firstChild.nodeValue = album.tite; 
-    albumArtist.firstChild.nodeValue = albumArtist; 
-    albumReleaseInfo.firstChild.nodeValue = album.year + " " + album.label; 
-    albumImage.setAttribute('src', album.albumArtUrl);
-    
-    albumSongList.innerHTML = ''; 
-    
-    for (var i = 0; i < album.song.length; i++) {
-        albumSongList.innerHTML += createSongRow(i +1, album.song[i].title, album.songs[i].duration);
-    }
-};
+     for (var i = 0; i < album.songs.length; i++) {
+         albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+     }
+ };
 
 window.onload = function() { 
-    setCurrentAlbum(albumPicasso);
+    setCurrentAlbum(albumPicasso)
+    
+    var albums = [albumPicasso, albumMarconi, albumU2];
+    var index = 1; 
+    albumImage.addEventListener('click', function(event) {
+        setCurrentAlbum(album[index]);
+        index++; 
+        if (index == album.length) {
+            index = 0;
+        }
+    });
 };
+
+
+
